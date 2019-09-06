@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<label>id:
+				<input type="text" v-model="id" /></label>
+			<label>名字:
+				<input type="text" v-model="name" /></label>
+			<button @click="add">添加</button>
+			<div>
+				<ul>
+					<li v-for="item in names" :key="item.id">
+						<span>{{item.id}}</span>
+						<span>{{item.name}}</span>
+						<button @click="del(item.id)">删除</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+
+
+		<script src="../lib/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					id: "",
+					name: "",
+					names: [{
+							id: "1",
+							name: "李信"
+						},
+						{
+							id: "2",
+							name: "韩信"
+						},
+						{
+							id: "3",
+							name: "嫦娥"
+						},
+						{
+							id: "4",
+							name: "猪八戒"
+						},
+						{
+							id: "5",
+							name: "芈月"
+						},
+						{
+							id: "6",
+							name: "妲己"
+						}
+					],
+					cont: null
+				},
+				methods: {
+					add() {
+						this.cont = true
+						var pdd = this.names.every((value, i) => {
+							if (this.id != value.id && this.name != value.name)
+								return true
+						})
+						if (pdd && this.cont) {
+							this.cont = false
+							this.names.push({
+								id: this.id,
+								name: this.name
+							})
+
+						} else {
+							alert("已有重复数据，请重新输入！")
+						}
+						console.log(pdd)
+
+
+
+
+					},
+					del(id) {
+						this.names.some((value, i) => {
+							if (id == value.id) {
+								this.names.splice(i, 1)
+								return true
+							}
+
+						})
+					}
+				},
+
+			})
+		</script>
+	</body>
+</html>
