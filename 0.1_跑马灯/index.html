@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="button" name="" value="跑起来" @click="pql" />
+			<input type="button" name="" value="歇一会" @click="xyh" />
+			<h1>{{msg}}</h1>
+
+		</div>
+
+
+		<script src="../lib/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					msg: "上海自来水来自海上！",
+					dsq: null
+				},
+				methods: {
+					pql() {
+						console.log(this.dsq)
+						if (this.dsq!=null) 
+						return;
+							this.dsq = setInterval(() => {
+								var value1 = this.msg.substring(0, 1);
+								var value2 = this.msg.substring(1);
+								this.msg = value2 + value1;
+							}, 900)
+							console.log(this.dsq)
+						
+
+					},
+					xyh() {
+						clearInterval(this.dsq);
+						this.dsq=null;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

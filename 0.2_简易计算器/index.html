@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<input v-model="val1" @keyup="jsq"/>
+			<select v-model="sele">
+				<option value="+">+</option>
+				<option value="-">-</option>
+				<option value="*">*</option>
+				<option value="/">/</option>
+			</select>
+			<input v-model="val2" @keyup="jsq" />=
+			<input v-model="val3"/>
+			
+			
+			
+		</div>
+		<script src="../lib/vue.js"></script>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:"#app",
+				data:{
+					val1:0,
+					val2:0,
+					val3:0,
+					sele:"+"
+				},
+				methods:{
+					jsq(){
+						this.val3=eval(this.val1+this.sele+this.val2);
+					}
+				}
+			});
+			
+			
+			
+		</script>
+	</body>
+</html>
